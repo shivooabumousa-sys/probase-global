@@ -8,9 +8,31 @@
   --ink-mute:#686b72; /* darkened from #83868c to meet WCAG AA (4.5:1) on the light backgrounds */
   --white:#ffffff;
   --footer-bg:#101217;
+  --grid-line:rgba(16,18,23,0.06);
+  --btn-hover:#000000;
+  --panel:#101217;
   --radius:2px;
   --maxw:1320px;
 }
+/* Dark theme — inverted neutrals, tinted slightly cool to match the brand ink.
+   Applied when data-theme="dark" is set on <html> (by the no-flash head script
+   or the toggle). Every colour above is themeable, so components follow along. */
+:root[data-theme="dark"]{
+  --bg:#0e1013;
+  --bg-alt:#15181d;
+  --bg-cream:#14171b;
+  --border:#282c31;
+  --ink:#f3f4f1;
+  --ink-soft:#b9bcc1;
+  --ink-mute:#9aa0a7;
+  --white:#0e1013;
+  --footer-bg:#080a0c;
+  --grid-line:rgba(255,255,255,0.05);
+  --btn-hover:#ffffff;
+  --panel:#1b1f26;
+}
+:root{color-scheme:light;}
+:root[data-theme="dark"]{color-scheme:dark;}
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
@@ -41,14 +63,19 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .site-nav a{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:4px;border-bottom:1px solid transparent;}
 .site-nav a:hover,.site-nav a.active{color:var(--ink);border-color:var(--ink);}
 .header-actions{display:flex;align-items:center;gap:12px;}
-.lang-toggle{font-family:inherit;font-size:12px;font-weight:600;background:var(--white);border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;}
+.lang-toggle{font-family:inherit;font-size:12px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;}
 /* Arabic/RTL locale not yet built — hide the inert toggle until ar/ pages exist. Remove this line to restore it. */
 .lang-toggle{display:none;}
+/* Theme toggle — sun/moon swaps by data-theme. */
+.theme-toggle{font-family:inherit;font-size:15px;line-height:1;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:999px;width:38px;height:34px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
+.theme-toggle:hover{border-color:var(--ink);}
+.theme-toggle .theme-icon::before{content:"\263E";} /* ☾ moon in light mode */
+:root[data-theme="dark"] .theme-toggle .theme-icon::before{content:"\2600";} /* ☀ sun in dark mode */
 .menu-toggle{display:none;background:none;border:none;font-size:22px;cursor:pointer;}
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:14px 22px;border-radius:var(--radius);white-space:nowrap;cursor:pointer;border:1px solid transparent;}
 .btn-primary{background:var(--ink);color:var(--white);}
-.btn-primary:hover{background:#000;}
+.btn-primary:hover{background:var(--btn-hover);}
 .btn-outline{background:transparent;color:var(--ink);border-color:var(--ink);}
 .btn-outline:hover{background:var(--ink);color:var(--white);}
 .btn-sm{padding:10px 16px;}
@@ -57,8 +84,8 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 /* Hero */
 .hero{background:var(--bg);
   background-image:
-    linear-gradient(rgba(16,18,23,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(16,18,23,0.06) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size:44px 44px;
   border-bottom:1px solid var(--border);
 }
@@ -72,7 +99,7 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .hero-media{position:relative;overflow:hidden;background:var(--bg-alt);min-height:400px;}
 .hero-media img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
 .hero-tag--top{position:absolute;top:20px;left:20px;font-size:10px;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.85);text-transform:uppercase;z-index:2;}
-.hero-badge{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.92);display:flex;align-items:center;gap:8px;padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:2px;z-index:2;}
+.hero-badge{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.92);color:#101217;display:flex;align-items:center;gap:8px;padding:10px 16px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:2px;z-index:2;}
 .hero-badge img{width:20px;height:20px;}
 .hero-caption{position:absolute;bottom:20px;left:20px;font-size:10px;font-weight:700;letter-spacing:0.1em;color:rgba(255,255,255,0.85);text-transform:uppercase;z-index:2;}
 .hero-mark{position:absolute;bottom:20px;right:20px;font-size:13px;font-weight:800;color:rgba(255,255,255,0.9);letter-spacing:0.06em;z-index:2;}
@@ -80,7 +107,7 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .overview{padding:90px 0;border-bottom:1px solid var(--border);}
 .overview-grid{display:grid;grid-template-columns:2fr 1fr;gap:60px;align-items:start;}
 .tiny-label{display:block;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;}
-.tiny-label.muted{color:#6b6e75;} /* was #a7a9ad (2.27:1, failed AA); now ~4.9:1, a hair lighter than --ink-mute */
+.tiny-label.muted{color:var(--ink-mute);} /* themeable; was #a7a9ad which failed AA */
 .section-label{display:block;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:16px;}
 .overview-copy h2{font-size:clamp(26px,3vw,38px);line-height:1.25;margin-top:8px;}
 .overview-list{display:flex;flex-direction:column;}
@@ -174,14 +201,14 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .capcard[style*="background-image"] .capcard-num,.capcard[style*="background-image"] .capcard-title{position:relative;z-index:1;}
 .discipline{padding:90px 0;border-top:1px solid var(--border);}
 .discipline-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;}
-.discipline-visual{background:var(--ink);border-radius:var(--radius);min-height:300px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;color:rgba(255,255,255,0.5);font-size:12px;font-weight:700;}
+.discipline-visual{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);min-height:300px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;color:rgba(255,255,255,0.5);font-size:12px;font-weight:700;}
 .discipline-visual span{padding:18px;border-right:1px solid rgba(255,255,255,0.1);border-bottom:1px solid rgba(255,255,255,0.1);}
 .discipline-copy h2{font-size:clamp(26px,3.4vw,40px);margin:14px 0 18px;}
 .discipline-copy p{margin-bottom:28px;max-width:440px;}
 /* Footer */
 .site-footer{background:var(--footer-bg);color:rgba(255,255,255,0.75);padding-top:70px;}
 .footer-inner{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:50px;}
-.footer-brand .brand-word strong{color:var(--white);}
+.footer-brand .brand-word strong{color:#f3f4f1;} /* footer is dark in both themes, so keep this light */
 .footer-brand p{margin-top:16px;max-width:280px;color:rgba(255,255,255,0.55);}
 /* The logo is an opaque cream tile with a dark mark (no transparency), so an
    invert filter would turn the whole square white. Show it as-is: a light logo
@@ -237,10 +264,11 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .team-member h3{font-size:16px;margin-bottom:5px;}
 .team-member span{font-size:12px;font-weight:600;letter-spacing:0.04em;color:var(--ink-mute);}
 @media (max-width: 980px){
-  /* Collapse the top bar to logo + hamburger. The long proposal CTA collided
-     with the brand and menu button; on mobile the proposal path is reached via
-     the menu's Contact link and the in-page CTAs. */
-  .site-nav,.header-actions{display:none;}
+  /* Collapse the top bar to logo + toggles + hamburger. The long proposal CTA
+     collided with the brand, so it is hidden on mobile (reachable via the menu's
+     Contact link); the small theme toggle stays visible. */
+  .site-nav{display:none;}
+  .header-actions .btn{display:none;}
   .menu-toggle{display:block;}
   /* Mobile menu opens as a full-width dropdown panel below the sticky header, not a squeezed inline row. */
   .site-nav.open{display:block;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--border);box-shadow:0 14px 28px rgba(16,18,23,0.08);padding:6px 20px 14px;}

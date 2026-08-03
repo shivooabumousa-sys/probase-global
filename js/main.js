@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // Theme toggle (dark / light). The initial theme is set in <head> by theme-init.js;
+  // this just flips it on click and remembers the choice.
+  var themeToggle = document.querySelector('.theme-toggle');
+  if (themeToggle) {
+    var syncTheme = function () {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    };
+    syncTheme();
+    themeToggle.addEventListener('click', function () {
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      var next = dark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('pbg-theme', next); } catch (e) {}
+      syncTheme();
+    });
+  }
   // FAQ accordion
   document.querySelectorAll('.faq-item').forEach(function (item) {
     var btn = item.querySelector('.faq-q');
