@@ -1,0 +1,5 @@
+# ProBase Global — static site, no build step.
+# For Netlify drag-drop this file is optional; it matters when you connect the Git repo.
+[build]
+  publish = "."
+  command = ""
