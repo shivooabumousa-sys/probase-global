@@ -380,6 +380,20 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .site-nav a{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;border-bottom:none;transition:background-size .3s cubic-bezier(.2,.7,.2,1),color .2s ease;}
 .site-nav a:hover,.site-nav a.active{background-size:100% 1px;color:var(--ink);}
 body{transition:background-color .4s ease,color .4s ease;}
+/* Scroll progress bar */
+.scroll-progress{position:fixed;top:0;left:0;right:0;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:left;z-index:60;will-change:transform;}
+[dir="rtl"] .scroll-progress{transform-origin:right;}
+/* Image zoom on hover */
+.hero-media img,.discipline-visual img{transition:transform .7s cubic-bezier(.2,.7,.2,1);}
+.hero-media:hover img,.discipline-visual:hover img{transform:scale(1.05);}
+/* Button press + smoother hover */
+.btn{transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .15s ease;}
+.btn:active{transform:scale(.97);}
+/* Deepen the photo-card overlay on hover */
+.capcard[style*="background-image"]::before{transition:background .4s ease;}
+.capcard[style*="background-image"]:hover::before{background:linear-gradient(180deg,rgba(16,18,23,0.12),rgba(16,18,23,0.66));}
+/* Polished keyboard focus ring */
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:3px;}
 /* ---- RTL / Arabic --------------------------------------------------------- */
 [dir="rtl"] body{font-family:'Tajawal','Montserrat',Arial,sans-serif;}
 /* Arabic is cursive; letter-spacing breaks the joins, so remove it everywhere in RTL. */

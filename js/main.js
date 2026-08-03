@@ -121,6 +121,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll(revealSel).forEach(function (el) {
       if (el.getBoundingClientRect().top > window.innerHeight * 0.88) {
         el.classList.add('reveal');
+        // Gentle stagger so grouped cards reveal in sequence.
+        var idx = [].indexOf.call(el.parentNode.children, el);
+        el.style.transitionDelay = Math.min(idx * 0.05, 0.28) + 's';
         pending.push(el);
       }
     });
@@ -153,6 +156,18 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+
+  // Thin scroll-progress bar at the top of the page.
+  var bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.appendChild(bar);
+  var updateBar = function () {
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(window.scrollY / h, 1) : 0) + ')';
+  };
+  window.addEventListener('scroll', updateBar, { passive: true });
+  window.addEventListener('resize', updateBar);
+  updateBar();
 
   // Count-up animation for the stat numbers when they scroll into view.
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
