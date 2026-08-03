@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // and skipped for reduced-motion visitors. A scroll handler reveals as you go, with a
   // timeout safety net so content is NEVER left hidden even if events misbehave.
   if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
-    var revealSel = '.overview-copy h2, .layers h2, .layer-card, .capmap-grid article, .dir-item, .scenario-item, .case-item, .cases h2, .outcomes-list li, .faq-item, .stats-band li, .partner-slot, .team-member, .routing-grid > div, .approach h2, .approach p, .why-card';
+    var revealSel = '.overview-copy h2, .layers h2, .layer-card, .capmap-grid article, .dir-item, .scenario-item, .case-item, .cases h2, .outcomes-list li, .faq-item, .stats-band li, .partner-slot, .team-member, .routing-grid > div, .approach h2, .approach p, .why-card, .timeline-step, .quote-card';
     var pending = [];
     document.querySelectorAll(revealSel).forEach(function (el) {
       if (el.getBoundingClientRect().top > window.innerHeight * 0.88) {

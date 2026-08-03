@@ -194,6 +194,26 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 /* Gentle hover lift on the bordered content cards */
 .capmap-grid article,.case-item,.team-member,.outcomes-list li{transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s ease;}
 .capmap-grid article:hover,.case-item:hover,.team-member:hover,.outcomes-list li:hover{transform:translateY(-3px);border-color:var(--ink-soft);}
+/* Delivery timeline */
+.timeline{padding:90px 0;border-bottom:1px solid var(--border);}
+.timeline h2{font-size:clamp(24px,3vw,34px);max-width:640px;margin:14px 0 8px;}
+.timeline-track{display:grid;grid-template-columns:repeat(4,1fr);margin-top:50px;}
+.timeline-step{position:relative;padding:34px 26px 0 0;}
+.timeline-step::before{content:"";position:absolute;top:6px;left:0;width:100%;height:1px;background:var(--border);}
+.timeline-step::after{content:"";position:absolute;top:1px;left:0;width:12px;height:12px;border-radius:50%;background:var(--ink);border:2px solid var(--bg);}
+.timeline-step .t-num{display:block;font-size:12px;font-weight:700;color:var(--ink-mute);margin-bottom:8px;}
+.timeline-step h3{font-size:17px;line-height:1.3;margin-bottom:10px;}
+.timeline-step p{font-size:14px;}
+/* Testimonials */
+.testimonials{padding:90px 0;border-bottom:1px solid var(--border);}
+.testimonials h2{font-size:clamp(24px,3vw,34px);max-width:640px;margin:14px 0 40px;}
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.quote-card{border:1px solid var(--border);border-radius:var(--radius);padding:30px;background:var(--bg-cream);display:flex;flex-direction:column;gap:22px;margin:0;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s ease;}
+.quote-card:hover{transform:translateY(-3px);border-color:var(--ink-soft);}
+.quote-card blockquote{margin:0;font-size:16px;line-height:1.6;color:var(--ink);font-weight:500;}
+.quote-card figcaption{display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--border);padding-top:18px;}
+.quote-card figcaption b{font-size:14px;}
+.quote-card figcaption span{font-size:12px;color:var(--ink-mute);}
 /* Why / differentiators (home) */
 .why{padding:90px 0;border-bottom:1px solid var(--border);}
 .why h2{font-size:clamp(26px,3vw,38px);max-width:660px;margin:14px 0 44px;}
@@ -317,7 +337,12 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
   .case-body{grid-template-columns:1fr;gap:18px;}
   .case-metrics{gap:24px;}
   .stats-band,.partner-grid,.team-grid{grid-template-columns:repeat(2,1fr);}
-  .why-grid{grid-template-columns:1fr;}
+  .why-grid,.quote-grid{grid-template-columns:1fr;}
+  .timeline-track{grid-template-columns:1fr;}
+  .timeline-step{padding:0 0 30px 26px;}
+  .timeline-step::before{top:0;left:5px;width:1px;height:100%;}
+  .timeline-step:last-child::before{height:0;}
+  .timeline-step::after{left:0;top:2px;}
   .directory-grid{grid-template-columns:repeat(2,1fr);}
   .outcomes-list{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
