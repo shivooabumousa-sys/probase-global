@@ -194,6 +194,16 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 /* Gentle hover lift on the bordered content cards */
 .capmap-grid article,.case-item,.team-member,.outcomes-list li{transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .3s ease;}
 .capmap-grid article:hover,.case-item:hover,.team-member:hover,.outcomes-list li:hover{transform:translateY(-3px);border-color:var(--ink-soft);}
+/* Why / differentiators (home) */
+.why{padding:90px 0;border-bottom:1px solid var(--border);}
+.why h2{font-size:clamp(26px,3vw,38px);max-width:660px;margin:14px 0 44px;}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.why-card{background:var(--bg);padding:32px 28px;display:flex;flex-direction:column;gap:14px;transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+.why-card:hover{transform:translateY(-3px);}
+.why-icon{width:46px;height:46px;border:1px solid var(--border);border-radius:var(--radius);display:inline-flex;align-items:center;justify-content:center;color:var(--ink);}
+.why-icon svg{width:22px;height:22px;display:block;}
+.why-card h3{font-size:17px;line-height:1.35;}
+.why-card p{font-size:14px;}
 /* Home-specific sections */
 .approach{padding:100px 0 80px;}
 .approach h2{font-size:clamp(28px,4vw,48px);max-width:760px;margin:14px 0 26px;}
@@ -305,6 +315,7 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
   .case-body{grid-template-columns:1fr;gap:18px;}
   .case-metrics{gap:24px;}
   .stats-band,.partner-grid,.team-grid{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:1fr;}
   .directory-grid{grid-template-columns:repeat(2,1fr);}
   .outcomes-list{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
