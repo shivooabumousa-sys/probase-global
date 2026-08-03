@@ -63,9 +63,8 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .site-nav a{font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-soft);padding-bottom:4px;border-bottom:1px solid transparent;}
 .site-nav a:hover,.site-nav a.active{color:var(--ink);border-color:var(--ink);}
 .header-actions{display:flex;align-items:center;gap:12px;}
-.lang-toggle{font-family:inherit;font-size:12px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;}
-/* Arabic/RTL locale not yet built — hide the inert toggle until ar/ pages exist. Remove this line to restore it. */
-.lang-toggle{display:none;}
+.lang-toggle{font-family:inherit;font-size:12px;font-weight:600;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:999px;padding:8px 14px;cursor:pointer;min-width:74px;text-align:center;}
+.lang-toggle:hover{border-color:var(--ink);}
 /* Theme toggle — sun/moon swaps by data-theme. */
 .theme-toggle{font-family:inherit;font-size:15px;line-height:1;color:var(--ink);background:var(--white);border:1px solid var(--border);border-radius:999px;width:38px;height:34px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;}
 .theme-toggle:hover{border-color:var(--ink);}
@@ -300,6 +299,20 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
   .scenario-grid{grid-template-columns:1fr;}
   .footer-inner{grid-template-columns:1fr;}
 }
+/* ---- RTL / Arabic --------------------------------------------------------- */
+[dir="rtl"] body{font-family:'Tajawal','Montserrat',Arial,sans-serif;}
+/* Arabic is cursive; letter-spacing breaks the joins, so remove it everywhere in RTL. */
+[dir="rtl"] *{letter-spacing:normal !important;}
+[dir="rtl"] h1,[dir="rtl"] h2,[dir="rtl"] h3{letter-spacing:normal;}
+/* Mirror the absolutely-positioned corner labels. */
+[dir="rtl"] .skip-link{left:auto;right:12px;}
+[dir="rtl"] .hero-tag--top{left:auto;right:20px;}
+[dir="rtl"] .hero-badge{right:auto;left:20px;}
+[dir="rtl"] .hero-caption{left:auto;right:20px;}
+[dir="rtl"] .hero-mark{right:auto;left:20px;}
+[dir="rtl"] .capcard-num{left:auto;right:24px;}
+[dir="rtl"] .hero-copy{padding:80px 40px 80px 60px;}
+[dir="rtl"] .eyebrow i{transform:scaleX(-1);}
 /* Respect users who ask for less motion: kill the FAQ height animation, icon spin and smooth scroll. */
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
