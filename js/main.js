@@ -7,8 +7,13 @@ document.addEventListener('DOMContentLoaded', function () {
       var wasOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item.open').forEach(function (o) {
         o.classList.remove('open');
+        var q = o.querySelector('.faq-q');
+        if (q) q.setAttribute('aria-expanded', 'false');
       });
-      if (!wasOpen) item.classList.add('open');
+      if (!wasOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
   // Mobile menu toggle
@@ -16,8 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var nav = document.querySelector('.site-nav');
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
-      nav.style.display = nav.classList.contains('open') ? 'block' : '';
+      var open = nav.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
   }
   // Contact form: build a mailto link instead of storing data (mirrors original "static site" behavior)
