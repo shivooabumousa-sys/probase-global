@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Contact form. With a Web3Forms access key set below, each submission is emailed
   // to the company inbox instantly (works on this static site, no server needed).
   // Until a key is configured it falls back to the visitor's mail client (mailto).
-  var ENQUIRY_ACCESS_KEY = 'b2cbe4f8-0d18-489e-acfa-6a615b3fdd3a'; // Web3Forms public access key (emails info@probaseglobal.com)
+  var ENQUIRY_ACCESS_KEY = '6485a812-f906-4b42-b91d-5f2f0b6a6021'; // Web3Forms public access key (emails info@probaseglobal.com)
   var form = document.getElementById('enquiry-form');
   if (form) {
     var status = form.querySelector('.form-status');
