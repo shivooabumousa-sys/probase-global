@@ -145,4 +145,50 @@ document.addEventListener('DOMContentLoaded', function () {
       pending = [];
     }, 4000);
   }
+
+  // Subtle shadow on the header once the page is scrolled.
+  var header = document.querySelector('.site-header');
+  if (header) {
+    var onScroll = function () { header.classList.toggle('scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Count-up animation for the stat numbers when they scroll into view.
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stats = [].slice.call(document.querySelectorAll('.stat-value'));
+  if (stats.length) {
+    var runStat = function (el) {
+      var raw = el.getAttribute('data-count') || el.textContent;
+      el.setAttribute('data-count', raw);
+      var m = raw.match(/^(\D*)(\d+)(\D*)$/);
+      if (!m) return;
+      var pre = m[1], target = parseInt(m[2], 10), suf = m[3];
+      if (reduceMotion) { el.textContent = pre + target + suf; return; }
+      var start = null, dur = 1300, done = false;
+      var tick = function (now) {
+        if (done) return;
+        if (start === null) start = now;
+        var p = Math.min((now - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = pre + Math.round(eased * target) + suf;
+        if (p < 1) requestAnimationFrame(tick); else done = true;
+      };
+      requestAnimationFrame(tick);
+      // Safety: always land on the final value even if rAF is throttled/stalls.
+      setTimeout(function () { if (!done) { done = true; el.textContent = pre + target + suf; } }, dur + 500);
+    };
+    var statsPending = stats.slice();
+    var statCheck = function () {
+      for (var i = statsPending.length - 1; i >= 0; i--) {
+        if (statsPending[i].getBoundingClientRect().top < window.innerHeight * 0.9) {
+          runStat(statsPending[i]);
+          statsPending.splice(i, 1);
+        }
+      }
+      if (!statsPending.length) window.removeEventListener('scroll', statCheck);
+    };
+    window.addEventListener('scroll', statCheck, { passive: true });
+    statCheck();
+  }
 });

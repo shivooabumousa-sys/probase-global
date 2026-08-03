@@ -361,6 +361,25 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .next-step,.approach{position:relative;overflow:hidden;}
 .next-step::after{content:"";position:absolute;top:-130px;right:-130px;width:440px;height:440px;border:1px solid var(--border);border-radius:50%;pointer-events:none;}
 .approach::after{content:"";position:absolute;bottom:-170px;left:-150px;width:420px;height:420px;border:1px solid var(--border);border-radius:50%;pointer-events:none;}
+/* ---- Motion & professional touches ----------------------------------------- */
+@keyframes pbg-rise{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.hero-copy > *{animation:pbg-rise .7s cubic-bezier(.2,.7,.2,1) both;}
+.hero-copy > *:nth-child(1){animation-delay:.04s;}
+.hero-copy > *:nth-child(2){animation-delay:.11s;}
+.hero-copy > *:nth-child(3){animation-delay:.18s;}
+.hero-copy > *:nth-child(4){animation-delay:.25s;}
+.hero-copy > *:nth-child(5){animation-delay:.32s;}
+.hero-media{animation:pbg-rise .9s cubic-bezier(.2,.7,.2,1) both .18s;}
+.arrow{transition:transform .25s cubic-bezier(.2,.7,.2,1);}
+.btn:hover .arrow,.link-arrow:hover .arrow,.capcard:hover .arrow{transform:translate(3px,-3px);}
+.capcard{transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+.capcard:hover{transform:translateY(-5px);}
+.site-header{transition:box-shadow .3s ease,border-color .3s ease;}
+.site-header.scrolled{box-shadow:0 8px 30px rgba(16,18,23,0.07);}
+:root[data-theme="dark"] .site-header.scrolled{box-shadow:0 8px 30px rgba(0,0,0,0.35);}
+.site-nav a{background-image:linear-gradient(currentColor,currentColor);background-repeat:no-repeat;background-position:0 100%;background-size:0% 1px;border-bottom:none;transition:background-size .3s cubic-bezier(.2,.7,.2,1),color .2s ease;}
+.site-nav a:hover,.site-nav a.active{background-size:100% 1px;color:var(--ink);}
+body{transition:background-color .4s ease,color .4s ease;}
 /* ---- RTL / Arabic --------------------------------------------------------- */
 [dir="rtl"] body{font-family:'Tajawal','Montserrat',Arial,sans-serif;}
 /* Arabic is cursive; letter-spacing breaks the joins, so remove it everywhere in RTL. */
