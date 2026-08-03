@@ -20,9 +20,27 @@ document.addEventListener('DOMContentLoaded', function () {
   var menuToggle = document.querySelector('.menu-toggle');
   var nav = document.querySelector('.site-nav');
   if (menuToggle && nav) {
-    menuToggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('open');
+    var setMenu = function (open) {
+      nav.classList.toggle('open', open);
       menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    menuToggle.addEventListener('click', function () {
+      setMenu(!nav.classList.contains('open'));
+    });
+    // Close on link tap, Escape (return focus to the toggle), or a click outside.
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setMenu(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav.classList.contains('open')) {
+        setMenu(false);
+        menuToggle.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !menuToggle.contains(e.target)) {
+        setMenu(false);
+      }
     });
   }
   // Contact form: build a mailto link instead of storing data (mirrors original "static site" behavior)

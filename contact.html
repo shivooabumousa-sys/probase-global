@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="index.html">
@@ -24,7 +25,7 @@
 <li><a href="capabilities.html">Capabilities</a></li>
 <li><a href="industries.html">Industries</a></li>
 <li><a href="projects.html">Projects</a></li>
-<li><a href="contact.html" class="active">Contact</a></li>
+<li><a href="contact.html" class="active" aria-current="page">Contact</a></li>
       </ul>
     </nav>
     <div class="header-actions">
@@ -34,7 +35,7 @@
     <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">&#9776;</button>
   </div>
 </header>
-<main>
+<main id="main-content">
 <section class="hero">
   <div class="hero-grid">
     <div class="hero-copy">
@@ -91,15 +92,15 @@
       &mdash; <a href="mailto:info@probaseglobal.com">info@probaseglobal.com</a></p>
     <form class="contact-form" id="enquiry-form">
       <div class="form-row">
-        <label>Name<input type="text" name="name" required></label>
-        <label>Company<input type="text" name="company"></label>
+        <label>Name<input type="text" name="name" autocomplete="name" required></label>
+        <label>Company<input type="text" name="company" autocomplete="organization"></label>
       </div>
       <div class="form-row">
-        <label>Email<input type="email" name="email" required></label>
-        <label>Phone number<input type="tel" name="phone"></label>
+        <label>Email<input type="email" name="email" autocomplete="email" required></label>
+        <label>Phone number<input type="tel" name="phone" autocomplete="tel"></label>
       </div>
       <div class="form-row">
-        <label>Country<input type="text" name="country"></label>
+        <label>Country<input type="text" name="country" autocomplete="country-name"></label>
         <label>Enquiry type
           <select name="type">
             <option value="">Select one</option>
