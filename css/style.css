@@ -228,6 +228,14 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
 .cert-row li{border:1px solid var(--border);border-radius:999px;padding:9px 17px;font-size:12px;font-weight:700;letter-spacing:0.03em;}
 .vision{max-width:660px;font-size:15px;}
 .vision b{color:var(--ink);font-weight:700;}
+/* ---- Leadership / team (about) ---------------------------------------------- */
+.leadership{padding:90px 0;border-bottom:1px solid var(--border);}
+.leadership h2{font-size:clamp(24px,3vw,34px);margin:14px 0 40px;max-width:640px;}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
+.team-member{background:var(--bg);padding:26px;}
+.team-photo{aspect-ratio:1;background:var(--bg-cream);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:18px;}
+.team-member h3{font-size:16px;margin-bottom:5px;}
+.team-member span{font-size:12px;font-weight:600;letter-spacing:0.04em;color:var(--ink-mute);}
 @media (max-width: 980px){
   /* Collapse the top bar to logo + hamburger. The long proposal CTA collided
      with the brand and menu button; on mobile the proposal path is reached via
@@ -256,7 +264,7 @@ p{margin:0;color:var(--ink-soft);line-height:1.6;}
   .case-item{padding:24px 20px;}
   .case-body{grid-template-columns:1fr;gap:18px;}
   .case-metrics{gap:24px;}
-  .stats-band,.partner-grid{grid-template-columns:repeat(2,1fr);}
+  .stats-band,.partner-grid,.team-grid{grid-template-columns:repeat(2,1fr);}
   .directory-grid{grid-template-columns:repeat(2,1fr);}
   .outcomes-list{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
